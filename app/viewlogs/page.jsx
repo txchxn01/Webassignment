@@ -17,6 +17,7 @@ export default async function Home() {
   if (!Array.isArray(records)) {
     return <div>Error: Data is not an array</div>;
   }
+  records.sort((a, b) => new Date(b.created) - new Date(a.created));
   return (
     <div className="p-8 font-von w-full h-full">
     <div className="flex flex-col bg-cream p-6 rounded-2xl shadow-2xl">
