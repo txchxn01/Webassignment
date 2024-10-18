@@ -45,6 +45,8 @@ export default function Temp() {
         title: "Error",
         text: "Something went wrong.",
         showConfirmButton: true,
+      }).then(() => {
+        location.reload();
       });
       console.error("Error:", error);
     }
