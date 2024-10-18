@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 export default function Temp() {
   const [temp, setTemp] = useState("");
@@ -11,17 +12,11 @@ export default function Temp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://api-pi-seven-52.vercel.app/logs", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json", // Specify JSON content type
-        },
-        body: JSON.stringify({
-          drone_id: 65010362,
-          drone_name: "Techin Eurjipongpun",
-          country: "Iceland",
-          celsius: temp,
-        }),
+      const response = await axios.post("https://api-pi-seven-52.vercel.app/logs", {
+        drone_id: 65010362,
+        drone_name: "Techin Eurjipongpun",
+        country: "Iceland",
+        celsius: temp,
       });
 
       if (response.ok) {
