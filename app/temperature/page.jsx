@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useFormState } from "react-dom";
-import Swal from 'sweetalert2'
+import { useState } from "react";
+import Swal from "sweetalert2";
 
-export default function temp() {
+export default function Temp() {
   const [temp, setTemp] = useState("");
 
   const handleTemp = (e) => setTemp(e.target.value);
@@ -24,39 +23,44 @@ export default function temp() {
           celsius: temp,
         }),
       });
-      
+
       if (response.ok) {
-        console.log("Temperature logged successfully");
+        Swal.fire({
+          icon: "success",
+          title: "Your temperature saved successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       } else {
-        console.error("Failed to log temperature");
+        Swal.fire({
+          icon: "error",
+          title: "Failed to save temperature",
+          text: "There was an issue with the submission.",
+          showConfirmButton: true,
+        });
       }
     } catch (error) {
-      console.error("Error:", error);
-    }finally{
       Swal.fire({
-        icon: "success",
-        title: "Your temperature saved",
-        showConfirmButton: false,
-        timer: 1500
+        icon: "error",
+        title: "Error",
+        text: "Something went wrong.",
+        showConfirmButton: true,
       });
+      console.error("Error:", error);
     }
   };
 
   return (
-    <form
-      className="flex justify-center pt-20 font-von "
-      onSubmit={handleSubmit}
-    >
-      <div className="w-96  bg-cream p-8 rounded-xl shadow-2xl">
+    <form className="flex justify-center pt-20 font-von" onSubmit={handleSubmit}>
+      <div className="w-96 bg-cream p-8 rounded-xl shadow-2xl">
         <div className="flex pb-4 text-3xl font-semibold justify-center">
           Temperature
         </div>
         <input
           type="number"
-          className="block w-full h-12 rounded-xl border-0 py-1 pl-7 pr-7 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kaki "
+          className="block w-full h-12 rounded-xl border-0 py-1 pl-7 pr-7 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kaki"
           onChange={handleTemp}
         />
-        <div>{/* Message : {state.message} */}</div>
         <div className="flex justify-center pt-4">
           <button
             type="submit"
