@@ -12,7 +12,7 @@ export default function Temp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://api-pi-seven-52.vercel.app/logs", {
+      const response = await axios.post("https://app-tracking.pockethost.io/api/collections/drone_logs/records", {
         drone_id: 65010362,
         drone_name: "Techin Eurjipongpun",
         country: "Iceland",
