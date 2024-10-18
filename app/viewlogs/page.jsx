@@ -29,7 +29,7 @@ export default async function Home() {
         <div className="flex w-72 h-14 bg-kaki rounded-xl justify-center items-center">Celsius</div>
       </div>
       {records.map((data, index) => (
-      <div className="flex pb-4 justify-around items-center text-xl gap-x-16 ">
+      <div className="flex pb-4 justify-around items-center text-xl gap-x-16 " key={index}>
         <div className="flex w-72 h-14 justify-center items-center">{ data.created }</div>
         <div className="flex w-72 h-14 justify-center items-center">{ data.country }</div>
         <div className="flex w-72 h-14 justify-center items-center">{ data.drone_id }</div>
